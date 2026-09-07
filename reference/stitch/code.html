@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>LF.DEV | Developer Quest</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&amp;family=JetBrains+Mono:wght@400;500&amp;family=Manrope:wght@400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "primary-fixed": "#c4e7ff",
+                      "inverse-on-surface": "#2d3039",
+                      "on-background": "#e0e2ee",
+                      "surface-variant": "#31353e",
+                      "tertiary-fixed-dim": "#eec200",
+                      "on-primary-fixed-variant": "#004c69",
+                      "on-secondary-fixed": "#23005c",
+                      "on-surface-variant": "#bdc8d1",
+                      "on-secondary": "#3c0091",
+                      "text-muted": "#94A3B8",
+                      "surface-container-low": "#181b24",
+                      "on-tertiary-fixed-variant": "#574500",
+                      "bg-elevated": "#111827",
+                      "background": "#10131c",
+                      "on-secondary-fixed-variant": "#5516be",
+                      "outline": "#87929a",
+                      "secondary": "#d0bcff",
+                      "on-error-container": "#ffdad6",
+                      "primary": "#8ed5ff",
+                      "card-fill": "rgba(15, 23, 42, 0.6)",
+                      "surface": "#10131c",
+                      "on-tertiary": "#3c2f00",
+                      "primary-container": "#38bdf8",
+                      "surface-tint": "#7bd0ff",
+                      "tertiary": "#f5c80c",
+                      "error": "#ffb4ab",
+                      "surface-container-highest": "#31353e",
+                      "primary-fixed-dim": "#7bd0ff",
+                      "secondary-container": "#571bc1",
+                      "secondary-fixed-dim": "#d0bcff",
+                      "outline-variant": "#3e484f",
+                      "on-secondary-container": "#c4abff",
+                      "surface-container": "#1c1f28",
+                      "tertiary-container": "#d5ad00",
+                      "on-primary-container": "#004965",
+                      "error-container": "#93000a",
+                      "status-success": "#22C55E",
+                      "surface-container-high": "#272a33",
+                      "surface-dim": "#10131c",
+                      "inverse-primary": "#00668a",
+                      "surface-bright": "#363942",
+                      "on-error": "#690005",
+                      "on-primary-fixed": "#001e2c",
+                      "on-tertiary-container": "#534200",
+                      "on-surface": "#e0e2ee",
+                      "surface-container-lowest": "#0b0e16",
+                      "on-primary": "#00354a",
+                      "tertiary-fixed": "#ffe083",
+                      "purple-glow": "#A855F7",
+                      "inverse-surface": "#e0e2ee",
+                      "on-tertiary-fixed": "#231b00",
+                      "secondary-fixed": "#e9ddff",
+                      "bg-surface": "#0B1020",
+                      "cyan-glow": "#22D3EE",
+                      "card-border": "rgba(255, 255, 255, 0.08)"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "unit": "8px",
+                      "max-container": "1200px",
+                      "gutter": "24px",
+                      "margin-desktop": "64px",
+                      "margin-mobile": "16px"
+              },
+              "fontFamily": {
+                      "headline-lg": ["Sora"],
+                      "headline-md": ["Sora"],
+                      "headline-lg-mobile": ["Sora"],
+                      "hud-label": ["JetBrains Mono"],
+                      "body-lg": ["Manrope"],
+                      "code-sm": ["JetBrains Mono"],
+                      "body-md": ["Manrope"],
+                      "display-hero": ["Sora"]
+              },
+              "fontSize": {
+                      "headline-lg": ["48px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                      "headline-md": ["32px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                      "headline-lg-mobile": ["32px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                      "hud-label": ["12px", { "lineHeight": "1.0", "letterSpacing": "0.1em", "fontWeight": "500" }],
+                      "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                      "code-sm": ["14px", { "lineHeight": "1.4", "fontWeight": "400" }],
+                      "body-md": ["16px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                      "display-hero": ["72px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "800" }]
+              }
+            }
+          }
+        }
+    </script>
+<style>
+        body {
+            background-color: #070A12;
+            color: #e0e2ee;
+            overflow-x: hidden;
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 16px 16px;
+            background-attachment: fixed;
+        }
+        
+        .glass-card {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 1rem;
+        }
+
+        .ambient-glow {
+            position: fixed;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            filter: blur(150px);
+            opacity: 0.15;
+            z-index: -1;
+            pointer-events: none;
+        }
+        .glow-cyan { background: #22D3EE; top: -10%; left: -10%; }
+        .glow-purple { background: #A855F7; bottom: -10%; right: -10%; }
+
+        .nav-node.active {
+            box-shadow: 0 0 15px rgba(34, 211, 238, 0.5);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #22D3EE, #A855F7);
+            color: white;
+            transition: all 0.3s ease;
+        }
+        .btn-primary:hover {
+            box-shadow: 0 0 20px rgba(34, 211, 238, 0.4);
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body class="font-body-md antialiased relative">
+<!-- Ambient Background -->
+<div class="ambient-glow glow-cyan"></div>
+<div class="ambient-glow glow-purple"></div>
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-xl border-b border-card-border shadow-[0_0_15px_rgba(34,211,238,0.1)] transition-all duration-300 ease-in-out hidden md:block">
+<div class="flex justify-between items-center px-margin-desktop h-[64px] max-w-container mx-auto">
+<div class="font-display-hero text-body-lg font-black tracking-tighter text-primary-container">LF.DEV</div>
+<div class="flex space-x-6">
+<a class="font-hud-label text-hud-label text-primary border-b-2 border-primary pb-1" href="#home">Home</a>
+<a class="font-hud-label text-hud-label text-on-surface-variant hover:text-primary transition-colors hover:bg-primary/10 px-2 py-1 rounded" href="#about">About</a>
+<a class="font-hud-label text-hud-label text-on-surface-variant hover:text-primary transition-colors hover:bg-primary/10 px-2 py-1 rounded" href="#skills">Skills</a>
+<a class="font-hud-label text-hud-label text-on-surface-variant hover:text-primary transition-colors hover:bg-primary/10 px-2 py-1 rounded" href="#projects">Projects</a>
+<a class="font-hud-label text-hud-label text-on-surface-variant hover:text-primary transition-colors hover:bg-primary/10 px-2 py-1 rounded" href="#experience">Experience</a>
+<a class="font-hud-label text-hud-label text-on-surface-variant hover:text-primary transition-colors hover:bg-primary/10 px-2 py-1 rounded" href="#contact">Contact</a>
+</div>
+<button class="font-hud-label text-hud-label btn-primary px-4 py-2 rounded-lg">START JOURNEY</button>
+</div>
+</nav>
+<!-- SideNavBar (Journey Map) -->
+<nav class="fixed right-8 top-1/2 -translate-y-1/2 z-40 bg-transparent flex flex-col items-center space-y-6 hidden md:flex group">
+<div class="text-center mb-4 opacity-0 group-hover:opacity-100 transition-opacity absolute right-12 top-[-40px] whitespace-nowrap">
+<div class="font-hud-label text-hud-label text-primary font-bold">DEVELOPER QUEST</div>
+<div class="font-code-sm text-code-sm text-text-muted text-[10px]">SYSTEM STATUS: ONLINE</div>
+</div>
+<a class="relative group cursor-pointer" href="#home" title="Start">
+<div class="flex items-center justify-center w-3 h-3 bg-primary rounded-full ring-4 ring-primary/20 animate-pulse nav-node active group-hover:scale-125 transition-transform"></div>
+<span class="absolute right-8 top-1/2 -translate-y-1/2 font-hud-label text-[10px] text-primary opacity-0 group-hover:opacity-100 transition-opacity">Start</span>
+</a>
+<div class="w-[1px] h-6 bg-card-border"></div>
+<a class="relative group cursor-pointer" href="#about" title="Profile">
+<div class="flex items-center justify-center w-2 h-2 bg-outline rounded-full hover:bg-primary-container transition-all group-hover:scale-125"></div>
+<span class="absolute right-8 top-1/2 -translate-y-1/2 font-hud-label text-[10px] text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity">Profile</span>
+</a>
+<div class="w-[1px] h-6 bg-card-border"></div>
+<a class="relative group cursor-pointer" href="#skills" title="Arsenal">
+<div class="flex items-center justify-center w-2 h-2 bg-outline rounded-full hover:bg-primary-container transition-all group-hover:scale-125"></div>
+<span class="absolute right-8 top-1/2 -translate-y-1/2 font-hud-label text-[10px] text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity">Arsenal</span>
+</a>
+<div class="w-[1px] h-6 bg-card-border"></div>
+<a class="relative group cursor-pointer" href="#projects" title="Missions">
+<div class="flex items-center justify-center w-2 h-2 bg-outline rounded-full hover:bg-primary-container transition-all group-hover:scale-125"></div>
+<span class="absolute right-8 top-1/2 -translate-y-1/2 font-hud-label text-[10px] text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity">Missions</span>
+</a>
+<div class="w-[1px] h-6 bg-card-border"></div>
+<a class="relative group cursor-pointer" href="#experience" title="Journey">
+<div class="flex items-center justify-center w-2 h-2 bg-outline rounded-full hover:bg-primary-container transition-all group-hover:scale-125"></div>
+<span class="absolute right-8 top-1/2 -translate-y-1/2 font-hud-label text-[10px] text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity">Journey</span>
+</a>
+<div class="w-[1px] h-6 bg-card-border"></div>
+<a class="relative group cursor-pointer" href="#contact" title="Portal">
+<div class="flex items-center justify-center w-2 h-2 bg-outline rounded-full hover:bg-primary-container transition-all group-hover:scale-125"></div>
+<span class="absolute right-8 top-1/2 -translate-y-1/2 font-hud-label text-[10px] text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity">Portal</span>
+</a>
+</nav>
+<main class="max-w-container mx-auto px-margin-mobile md:px-margin-desktop pt-24 pb-32 space-y-[120px]">
+<!-- HERO (Start Screen) -->
+<section class="relative min-h-[80vh] flex flex-col justify-center items-center text-center overflow-hidden rounded-2xl" id="home">
+<div class="absolute inset-0 z-0">
+<img class="w-full h-full object-cover opacity-30" data-alt="A cinematic, deep space nebula background with subtle glowing cyan grid lines, representing a digital nexus or command center in a vast cyber universe." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDOgr0Hx62iW0SpdDqTZt4aTJcoQk8Dcn-4niIQXPsAhT_lbnZJedaUe-dYigYL7TX7JpZsBPuckDu4Qf34IT4V2fZ1aRznSA3juJ6P1gdsFzPnocpPdMftA8eIlcZBbrdjVZj3gFdIyPdI9YKIKVtuME98ZL0lJxAliKFZGMOQY-mLCtOz5bmhkkFvFFwQeU2NlQSYCuqzM0bEriFTAY7YRLGckPMO1OmBYHqRxysIWhrkLgp5-74K"/>
+<div class="absolute inset-0 bg-gradient-to-b from-transparent to-background"></div>
+</div>
+<div class="relative z-10 space-y-6 max-w-3xl">
+<div class="inline-flex items-center space-x-2 bg-surface-container-high border border-primary/20 rounded-full px-4 py-1.5 mb-4">
+<span class="w-2 h-2 rounded-full bg-status-success animate-pulse"></span>
+<span class="font-hud-label text-hud-label text-primary">STATUS: AVAILABLE FOR OPPORTUNITIES</span>
+</div>
+<h2 class="font-hud-label text-hud-label text-tertiary tracking-widest uppercase">PLAYER 01</h2>
+<h1 class="font-display-hero text-display-hero text-on-background drop-shadow-[0_0_20px_rgba(34,211,238,0.3)]">LUIS FELIPE</h1>
+<h3 class="font-headline-md text-headline-md text-primary-container">SOFTWARE DEVELOPER</h3>
+<p class="font-code-sm text-code-sm text-on-surface-variant max-w-xl mx-auto opacity-80">
+                    Backend • Java • APIs • Databases
+                </p>
+<div class="pt-8">
+<button class="btn-primary font-hud-label text-hud-label px-8 py-4 rounded-lg flex items-center justify-center space-x-2 mx-auto">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">rocket_launch</span>
+<span>START JOURNEY</span>
+</button>
+</div>
+</div>
+</section>
+<!-- ABOUT (Player Profile) -->
+<section class="relative scroll-mt-24" id="about">
+<div class="text-center mb-12">
+<h2 class="font-headline-md text-headline-md text-on-background">PLAYER PROFILE</h2>
+<div class="h-1 w-24 bg-primary mx-auto mt-4 rounded-full opacity-50"></div>
+</div>
+<div class="glass-card p-8 md:p-12 max-w-4xl mx-auto flex flex-col md:flex-row gap-8 items-center border-l-4 border-l-primary">
+<div class="w-full md:w-1/3 flex flex-col items-center border-b md:border-b-0 md:border-r border-card-border pb-8 md:pb-0 md:pr-8">
+<div class="w-32 h-32 rounded-full border-2 border-primary/50 p-1 mb-6 relative group">
+<div class="absolute inset-0 rounded-full bg-primary/20 animate-ping opacity-20"></div>
+<img class="w-full h-full rounded-full object-cover" data-alt="Stylized avatar placeholder for Luis Felipe, conveying a professional yet cyber-tech identity with dark background and cyan glowing accents." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAjHIXQZ7nHq1VhczHqLv63XyVUb9AJtvLu40OU53d0np7aNeh-O1AT_miOgcjLA-5RY0QETzcRs4WO1uynwdpsBJd4XFHnHTRatgu2DKXrUZJwbJ7pDyhH5dSEScescWJFP9k-Yykdi3goZTxVybzFfdJ9XWiSRb5U0bKRNhBbFV87rl1AL1ngj8puS7KDyIEKmguHowifd8ov31jdhqxCmti78oAy6n-uVr85u1gd7tlXMjlKJ5_x"/>
+</div>
+<div class="space-y-4 w-full">
+<div class="flex justify-between items-center border-b border-card-border pb-2">
+<span class="font-hud-label text-[10px] text-text-muted">CLASS</span>
+<span class="font-code-sm text-code-sm text-primary">Backend Developer</span>
+</div>
+<div class="flex justify-between items-center border-b border-card-border pb-2">
+<span class="font-hud-label text-[10px] text-text-muted">MAIN SKILL</span>
+<span class="font-code-sm text-code-sm text-tertiary">Java</span>
+</div>
+<div class="flex justify-between items-center pb-2">
+<span class="font-hud-label text-[10px] text-text-muted">LEVEL</span>
+<span class="font-code-sm text-code-sm text-on-background">Junior</span>
+</div>
+<div class="mt-4">
+<div class="flex justify-between text-[10px] font-hud-label mb-1">
+<span class="text-text-muted">XP PROGRESS</span>
+<span class="text-primary">85%</span>
+</div>
+<div class="h-2 w-full bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[85%] rounded-full shadow-[0_0_10px_rgba(34,211,238,0.8)]"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="w-full md:w-2/3 space-y-6">
+<h3 class="font-headline-md text-headline-lg-mobile md:text-headline-md text-on-background">SYSTEM LOG: INITIALIZING</h3>
+<p class="font-body-lg text-body-md md:text-body-lg text-on-surface-variant leading-relaxed">
+                        Dedicated Backend Developer focused on building robust, scalable, and efficient systems. My journey is driven by a passion for solving complex architectural puzzles and writing clean, maintainable code.
+                    </p>
+<p class="font-body-lg text-body-md md:text-body-lg text-on-surface-variant leading-relaxed">
+                        Equipped with strong foundations in Java and modern frameworks, I approach every project as a new mission—analyzing requirements, optimizing data flow, and delivering high-performance APIs that power seamless digital experiences.
+                    </p>
+</div>
+</div>
+</section>
+<!-- SKILLS (Tech Arsenal) -->
+<section class="scroll-mt-24" id="skills">
+<div class="text-center mb-12">
+<h2 class="font-headline-md text-headline-md text-on-background">TECH ARSENAL</h2>
+<div class="h-1 w-24 bg-primary mx-auto mt-4 rounded-full opacity-50"></div>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+<!-- Skill Card Template -->
+<div class="glass-card p-6 flex flex-col items-center justify-center text-center group hover:-translate-y-2 transition-transform duration-300 hover:border-primary/50 relative overflow-hidden">
+<div class="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<span class="material-symbols-outlined text-4xl text-primary mb-4" style="font-variation-settings: 'FILL' 1;">terminal</span>
+<span class="font-hud-label text-hud-label text-on-background">Java</span>
+</div>
+<div class="glass-card p-6 flex flex-col items-center justify-center text-center group hover:-translate-y-2 transition-transform duration-300 hover:border-primary/50 relative overflow-hidden">
+<div class="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<span class="material-symbols-outlined text-4xl text-primary mb-4" style="font-variation-settings: 'FILL' 1;">eco</span>
+<span class="font-hud-label text-hud-label text-on-background">Spring Boot</span>
+</div>
+<div class="glass-card p-6 flex flex-col items-center justify-center text-center group hover:-translate-y-2 transition-transform duration-300 hover:border-primary/50 relative overflow-hidden">
+<div class="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<span class="material-symbols-outlined text-4xl text-primary mb-4" style="font-variation-settings: 'FILL' 1;">database</span>
+<span class="font-hud-label text-hud-label text-on-background">SQL</span>
+</div>
+<div class="glass-card p-6 flex flex-col items-center justify-center text-center group hover:-translate-y-2 transition-transform duration-300 hover:border-primary/50 relative overflow-hidden">
+<div class="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<span class="material-symbols-outlined text-4xl text-primary mb-4" style="font-variation-settings: 'FILL' 1;">storage</span>
+<span class="font-hud-label text-hud-label text-on-background">MySQL</span>
+</div>
+<div class="glass-card p-6 flex flex-col items-center justify-center text-center group hover:-translate-y-2 transition-transform duration-300 hover:border-primary/50 relative overflow-hidden">
+<div class="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<span class="material-symbols-outlined text-4xl text-primary mb-4" style="font-variation-settings: 'FILL' 1;">api</span>
+<span class="font-hud-label text-hud-label text-on-background">REST APIs</span>
+</div>
+<div class="glass-card p-6 flex flex-col items-center justify-center text-center group hover:-translate-y-2 transition-transform duration-300 hover:border-primary/50 relative overflow-hidden">
+<div class="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<span class="material-symbols-outlined text-4xl text-primary mb-4" style="font-variation-settings: 'FILL' 1;">commit</span>
+<span class="font-hud-label text-hud-label text-on-background">Git</span>
+</div>
+<div class="glass-card p-6 flex flex-col items-center justify-center text-center group hover:-translate-y-2 transition-transform duration-300 hover:border-primary/50 relative overflow-hidden">
+<div class="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<span class="material-symbols-outlined text-4xl text-primary mb-4" style="font-variation-settings: 'FILL' 1;">deployed_code</span>
+<span class="font-hud-label text-hud-label text-on-background">Docker</span>
+</div>
+<div class="glass-card p-6 flex flex-col items-center justify-center text-center group hover:-translate-y-2 transition-transform duration-300 hover:border-primary/50 relative overflow-hidden">
+<div class="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<span class="material-symbols-outlined text-4xl text-primary mb-4" style="font-variation-settings: 'FILL' 1;">code</span>
+<span class="font-hud-label text-hud-label text-on-background">HTML/JS</span>
+</div>
+</div>
+</section>
+<!-- PROJECTS (Select Mission) -->
+<section class="scroll-mt-24" id="projects">
+<div class="text-center mb-12">
+<h2 class="font-headline-md text-headline-md text-on-background">MISSION ARCHIVE</h2>
+<div class="h-1 w-24 bg-primary mx-auto mt-4 rounded-full opacity-50"></div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<!-- Project 1 -->
+<div class="glass-card group overflow-hidden flex flex-col">
+<div class="h-48 overflow-hidden relative">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="A futuristic dashboard UI screenshot displaying financial data, charts, and transaction logs, rendered in a dark cyber aesthetic with glowing cyan accents, representing a financial management API." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAtFtIR3bv1PQo84BWq-MoNkN5MRR_aSHDp5CvIWUoEd2ebxhYWtgFEgE3SmJbIn_AdjIwUGxP83oz_fGEEI1rMYH4r1VjmF9CRcX193dXKfq1CDVyadwEERFZDCBT7Al-JwsWEshdK1O4S19AgNgY83BA7xb3ibA2rumPMzvXBFv3lNgUju1KZfW31APc1NeARtVgS93pLFmn7c2kvFHZ1M02k5N4BBQDAFovqkdue4kbV3n1T4dLD"/>
+<div class="absolute top-4 right-4 bg-[#0F172A]/80 backdrop-blur border border-status-success/30 px-3 py-1 rounded text-status-success font-hud-label text-[10px] flex items-center space-x-1">
+<span class="w-1.5 h-1.5 rounded-full bg-status-success"></span>
+<span>COMPLETED</span>
+</div>
+</div>
+<div class="p-6 flex flex-col flex-grow border-t border-card-border">
+<h3 class="font-headline-md text-body-lg font-bold text-on-background mb-2">API de Gestão Financeira</h3>
+<p class="font-body-md text-code-sm text-on-surface-variant mb-6 flex-grow">
+                            A comprehensive financial management API built to handle transactions, budgeting, and financial reporting with high security and performance.
+                        </p>
+<div class="flex flex-wrap gap-2 mb-6">
+<span class="px-2 py-1 bg-surface-container border border-primary/20 text-primary font-code-sm text-[10px] rounded">Java</span>
+<span class="px-2 py-1 bg-surface-container border border-primary/20 text-primary font-code-sm text-[10px] rounded">Spring</span>
+<span class="px-2 py-1 bg-surface-container border border-primary/20 text-primary font-code-sm text-[10px] rounded">MySQL</span>
+</div>
+<button class="w-full py-3 bg-transparent border border-primary text-primary font-hud-label text-hud-label rounded hover:bg-primary/10 transition-colors flex justify-center items-center space-x-2">
+<span>OPEN MISSION</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Project 2 -->
+<div class="glass-card group overflow-hidden flex flex-col">
+<div class="h-48 overflow-hidden relative">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="An abstract visualization of interconnected server nodes floating in a dark digital space, representing microservices architecture and cloud deployment for an e-commerce platform." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB8ltan5LwrTwl7VExBUcDi4uPlHSkXMHLL33OYTcrPUrYVGcdWjhs0c1jC37d3zg4H2UbKciokuJiw-8VdU05zZc7a9Rb7waz5jKxqVAfj93mYvbKzqm_4yfi4EeVZmw5One1DIMeEkFkNYzjjFRzD7QvTHK4kLZjntc1e5PfkaPigvTXsz4UPgMjPuLhgAbnm1y-af3Ty5GwLM_n4ibn_jaygV2T59_XJDlBZsiOnYORgWKz49f4L"/>
+<div class="absolute top-4 right-4 bg-[#0F172A]/80 backdrop-blur border border-status-success/30 px-3 py-1 rounded text-status-success font-hud-label text-[10px] flex items-center space-x-1">
+<span class="w-1.5 h-1.5 rounded-full bg-status-success"></span>
+<span>COMPLETED</span>
+</div>
+</div>
+<div class="p-6 flex flex-col flex-grow border-t border-card-border">
+<h3 class="font-headline-md text-body-lg font-bold text-on-background mb-2">E-commerce Microservices</h3>
+<p class="font-body-md text-code-sm text-on-surface-variant mb-6 flex-grow">
+                            A scalable e-commerce backend built with a microservices architecture, ensuring high availability and seamless deployment pipelines.
+                        </p>
+<div class="flex flex-wrap gap-2 mb-6">
+<span class="px-2 py-1 bg-surface-container border border-primary/20 text-primary font-code-sm text-[10px] rounded">Spring Cloud</span>
+<span class="px-2 py-1 bg-surface-container border border-primary/20 text-primary font-code-sm text-[10px] rounded">Docker</span>
+<span class="px-2 py-1 bg-surface-container border border-primary/20 text-primary font-code-sm text-[10px] rounded">RabbitMQ</span>
+</div>
+<button class="w-full py-3 bg-transparent border border-primary text-primary font-hud-label text-hud-label rounded hover:bg-primary/10 transition-colors flex justify-center items-center space-x-2">
+<span>OPEN MISSION</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- EXPERIENCE (Journey Map) -->
+<section class="scroll-mt-24" id="experience">
+<div class="text-center mb-16">
+<h2 class="font-headline-md text-headline-md text-on-background">JOURNEY LOG</h2>
+<div class="h-1 w-24 bg-primary mx-auto mt-4 rounded-full opacity-50"></div>
+</div>
+<div class="relative max-w-3xl mx-auto pl-8 md:pl-0">
+<!-- Vertical Line -->
+<div class="absolute left-[27px] md:left-1/2 top-0 bottom-0 w-[2px] bg-card-border -translate-x-1/2"></div>
+<div class="space-y-12">
+<!-- Checkpoint 1 -->
+<div class="relative flex md:justify-between items-center group w-full">
+<div class="hidden md:block w-5/12 text-right pr-8">
+<div class="font-hud-label text-hud-label text-primary mb-1">LEVEL 4</div>
+<h4 class="font-headline-md text-[18px] text-on-background">Java Journey</h4>
+</div>
+<div class="absolute left-0 md:left-1/2 w-4 h-4 bg-background border-2 border-primary rounded-full -translate-x-1/2 z-10 group-hover:bg-primary group-hover:shadow-[0_0_10px_#22D3EE] transition-all"></div>
+<div class="w-full md:w-5/12 pl-12 md:pl-8">
+<div class="glass-card p-5">
+<div class="md:hidden font-hud-label text-[10px] text-primary mb-1">LEVEL 4 - Java Journey</div>
+<p class="font-code-sm text-code-sm text-on-surface-variant">Focusing deep on Java ecosystem, building enterprise-grade applications and mastering advanced backend patterns.</p>
+</div>
+</div>
+</div>
+<!-- Checkpoint 2 -->
+<div class="relative flex md:justify-between items-center group w-full flex-row-reverse">
+<div class="hidden md:block w-5/12 text-left pl-8">
+<div class="font-hud-label text-hud-label text-tertiary mb-1">LEVEL 3</div>
+<h4 class="font-headline-md text-[18px] text-on-background">Backend Development</h4>
+</div>
+<div class="absolute left-0 md:left-1/2 w-4 h-4 bg-background border-2 border-tertiary rounded-full -translate-x-1/2 z-10 group-hover:bg-tertiary group-hover:shadow-[0_0_10px_#f5c80c] transition-all"></div>
+<div class="w-full md:w-5/12 pl-12 md:pl-0 md:pr-8">
+<div class="glass-card p-5">
+<div class="md:hidden font-hud-label text-[10px] text-tertiary mb-1">LEVEL 3 - Backend Development</div>
+<p class="font-code-sm text-code-sm text-on-surface-variant">Transitioned fully into backend roles, constructing robust APIs and managing complex database architectures.</p>
+</div>
+</div>
+</div>
+<!-- Checkpoint 3 -->
+<div class="relative flex md:justify-between items-center group w-full">
+<div class="hidden md:block w-5/12 text-right pr-8">
+<div class="font-hud-label text-hud-label text-outline mb-1">LEVEL 2</div>
+<h4 class="font-headline-md text-[18px] text-on-background">Support &amp; Systems</h4>
+</div>
+<div class="absolute left-0 md:left-1/2 w-4 h-4 bg-background border-2 border-outline rounded-full -translate-x-1/2 z-10 group-hover:bg-outline transition-all"></div>
+<div class="w-full md:w-5/12 pl-12 md:pl-8">
+<div class="glass-card p-5 border-outline/30">
+<div class="md:hidden font-hud-label text-[10px] text-outline mb-1">LEVEL 2 - Support &amp; Systems</div>
+<p class="font-code-sm text-code-sm text-on-surface-variant">Gained crucial understanding of system operations, debugging, and maintaining software environments.</p>
+</div>
+</div>
+</div>
+<!-- Checkpoint 4 -->
+<div class="relative flex md:justify-between items-center group w-full flex-row-reverse">
+<div class="hidden md:block w-5/12 text-left pl-8">
+<div class="font-hud-label text-hud-label text-outline mb-1">LEVEL 1</div>
+<h4 class="font-headline-md text-[18px] text-on-background">First Experiences</h4>
+</div>
+<div class="absolute left-0 md:left-1/2 w-4 h-4 bg-background border-2 border-outline rounded-full -translate-x-1/2 z-10 group-hover:bg-outline transition-all"></div>
+<div class="w-full md:w-5/12 pl-12 md:pl-0 md:pr-8">
+<div class="glass-card p-5 border-outline/30">
+<div class="md:hidden font-hud-label text-[10px] text-outline mb-1">LEVEL 1 - First Experiences</div>
+<p class="font-code-sm text-code-sm text-on-surface-variant">Initial steps into programming, laying the foundation of logic, algorithms, and basic web technologies.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer / Contact Portal -->
+<footer class="bg-surface-container-lowest border-t border-card-border relative overflow-hidden" id="contact">
+<!-- Cinematic Ending Overlay -->
+<div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary/5 via-background to-background pointer-events-none"></div>
+<div class="max-w-container mx-auto px-margin-desktop py-24 text-center relative z-10 flex flex-col items-center">
+<h2 class="font-display-hero text-headline-lg-mobile md:text-headline-lg text-on-background mb-4 drop-shadow-[0_0_15px_rgba(168,85,247,0.3)]">READY FOR THE NEXT QUEST?</h2>
+<p class="font-code-sm text-code-sm text-on-surface-variant mb-12 max-w-lg mx-auto">Initiate communication sequence to discuss collaborations, new missions, or system integrations.</p>
+<div class="flex space-x-6 mb-16">
+<a class="w-14 h-14 rounded-full glass-card flex items-center justify-center text-primary hover:text-white hover:bg-primary/20 hover:scale-110 transition-all duration-300" href="#">
+<span class="material-symbols-outlined text-[24px]">code</span>
+</a>
+<a class="w-14 h-14 rounded-full glass-card flex items-center justify-center text-primary hover:text-white hover:bg-primary/20 hover:scale-110 transition-all duration-300" href="#">
+<span class="material-symbols-outlined text-[24px]">connect_without_contact</span>
+</a>
+<a class="w-14 h-14 rounded-full glass-card flex items-center justify-center text-primary hover:text-white hover:bg-primary/20 hover:scale-110 transition-all duration-300" href="#">
+<span class="material-symbols-outlined text-[24px]">mail</span>
+</a>
+</div>
+<div class="w-full flex flex-col md:flex-row justify-between items-center border-t border-card-border pt-8 mt-8">
+<div class="font-hud-label text-[10px] text-tertiary mb-4 md:mb-0">
+                    LF.DEV // 2024
+                 </div>
+<div class="font-code-sm text-[12px] text-text-muted">
+                    © 2024 DEVELOPER QUEST // SYSTEM STATUS: ONLINE
+                 </div>
+<div class="flex space-x-4 mt-4 md:mt-0 font-code-sm text-[12px] text-text-muted">
+<a class="hover:text-primary-fixed-dim transition-colors" href="#">GitHub</a>
+<a class="hover:text-primary-fixed-dim transition-colors" href="#">LinkedIn</a>
+<a class="hover:text-primary-fixed-dim transition-colors" href="#">Documentation</a>
+</div>
+</div>
+</div>
+</footer>
+</body></html>
