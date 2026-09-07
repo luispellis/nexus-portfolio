@@ -7,7 +7,8 @@ Thumbs.db
 
 # Environment
 .env
-.env.*
+.env.local
+.env.*.local
 !.env.example
 
 # Frontend
@@ -17,6 +18,7 @@ frontend/out/
 frontend/dist/
 frontend/coverage/
 frontend/.vercel/
+frontend/*.tsbuildinfo
 
 # Backend
 backend/target/
