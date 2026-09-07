@@ -1,0 +1,44 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-base-background: #070a12;
+  --color-elevated-surface: #111827;
+  --color-primary-cyan: #22d3ee;
+  --color-secondary-purple: #a855f7;
+  --color-quest-gold: #f5c80c;
+  --color-primary-text: #e0e2ee;
+  --color-muted-text: #94a3b8;
+  --color-success: #22c55e;
+  --color-card-fill: rgb(15 23 42 / 60%);
+  --color-card-border: rgb(255 255 255 / 8%);
+  --radius-control: 0.5rem;
+  --radius-card: 1rem;
+  --container-width: 75rem;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--color-base-background);
+}
+
+body {
+  min-width: 320px;
+  margin: 0;
+  background:
+    linear-gradient(rgb(255 255 255 / 5%) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(255 255 255 / 5%) 1px, transparent 1px),
+    var(--color-base-background);
+  background-size: 16px 16px;
+  color: var(--color-primary-text);
+  font-family: var(--font-manrope), sans-serif;
+}
+
+::selection {
+  background: var(--color-primary-cyan);
+  color: var(--color-base-background);
+}
