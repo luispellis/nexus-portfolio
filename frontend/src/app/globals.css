@@ -42,3 +42,125 @@ body {
   background: var(--color-primary-cyan);
   color: var(--color-base-background);
 }
+
+.hero-section {
+  background:
+    linear-gradient(90deg, var(--color-base-background) 0%, rgb(7 10 18 / 82%) 56%, rgb(7 10 18 / 94%) 100%),
+    radial-gradient(circle at 78% 38%, rgb(34 211 238 / 12%), transparent 27%),
+    radial-gradient(circle at 64% 80%, rgb(168 85 247 / 11%), transparent 25%);
+}
+
+.hero-grid {
+  position: absolute;
+  inset: 0;
+  opacity: 0.32;
+  background-image:
+    linear-gradient(rgb(123 208 255 / 11%) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(123 208 255 / 11%) 1px, transparent 1px);
+  background-position: center;
+  background-size: 40px 40px;
+  mask-image: linear-gradient(to right, transparent 0%, black 38%, black 100%);
+}
+
+.hero-ambient {
+  position: absolute;
+  width: min(48vw, 44rem);
+  aspect-ratio: 1;
+  border-radius: 9999px;
+  filter: blur(72px);
+  opacity: 0.26;
+}
+
+.hero-ambient-cyan {
+  top: 8%;
+  right: -14%;
+  background: var(--color-primary-cyan);
+}
+
+.hero-ambient-purple {
+  right: 17%;
+  bottom: -35%;
+  background: var(--color-secondary-purple);
+}
+
+.hero-status-dot {
+  width: 0.625rem;
+  height: 0.625rem;
+  flex: none;
+  border-radius: 9999px;
+  background: var(--color-success);
+  box-shadow: 0 0 0 0.3rem rgb(34 197 94 / 12%);
+  animation: hero-status-pulse 2.4s cubic-bezier(0.25, 1, 0.5, 1) infinite;
+}
+
+.hero-signal {
+  position: relative;
+  min-height: 17rem;
+  border-left: 1px solid rgb(123 208 255 / 32%);
+}
+
+.hero-signal::before,
+.hero-signal::after {
+  position: absolute;
+  left: -1px;
+  width: 6rem;
+  height: 1px;
+  content: "";
+  background: linear-gradient(90deg, var(--color-primary-cyan), transparent);
+}
+
+.hero-signal::before {
+  top: 4rem;
+}
+
+.hero-signal::after {
+  bottom: 3rem;
+  background: linear-gradient(90deg, var(--color-secondary-purple), transparent);
+}
+
+.hero-signal-label {
+  position: absolute;
+  top: 0;
+  left: 1.5rem;
+  color: var(--color-muted-text);
+  font-family: var(--font-jetbrains-mono), monospace;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+}
+
+.hero-signal-node {
+  position: absolute;
+  left: -0.25rem;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 9999px;
+}
+
+.hero-signal-node-primary {
+  top: 3.8rem;
+  background: var(--color-primary-cyan);
+  box-shadow: 0 0 1rem rgb(34 211 238 / 60%);
+}
+
+.hero-signal-node-secondary {
+  bottom: 2.8rem;
+  background: var(--color-secondary-purple);
+  box-shadow: 0 0 1rem rgb(168 85 247 / 55%);
+}
+
+@keyframes hero-status-pulse {
+  50% {
+    box-shadow: 0 0 0 0.5rem rgb(34 197 94 / 0%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-section *,
+  .hero-section *::before,
+  .hero-section *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
