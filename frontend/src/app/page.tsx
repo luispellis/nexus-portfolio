@@ -1,5 +1,6 @@
 import { Header } from "@/components/layout/Header";
 import { About } from "@/components/sections/About";
+import { Experience } from "@/components/sections/Experience";
 import { Hero } from "@/components/sections/Hero";
 import { Projects } from "@/components/sections/Projects";
 import { Skills } from "@/components/sections/Skills";
@@ -15,8 +16,9 @@ export default function Home() {
         <About />
         <Skills />
         <Projects />
+        <Experience />
 
-        {navigationItems.slice(4).map((item) => (
+        {navigationItems.slice(5).map((item) => (
           <span
             className="block scroll-mt-20"
             id={item.href.slice(1)}
