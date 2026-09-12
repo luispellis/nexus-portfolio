@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: nexus-portfolio-api
+  mail:
+    host: ${MAIL_HOST:}
+    port: ${MAIL_PORT:587}
+    username: ${MAIL_USERNAME:}
+    password: ${MAIL_PASSWORD:}
+    properties:
+      mail.smtp.auth: ${MAIL_SMTP_AUTH:true}
+      mail.smtp.starttls.enable: ${MAIL_SMTP_STARTTLS:true}
+
+app:
+  cors:
+    allowed-origin: ${FRONTEND_ORIGIN:http://localhost:3000}
+
+contact:
+  recipient-email: ${CONTACT_RECIPIENT_EMAIL:}
+  sender-email: ${CONTACT_SENDER_EMAIL:${MAIL_USERNAME:}}
