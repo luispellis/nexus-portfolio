@@ -1,10 +1,10 @@
 import { Header } from "@/components/layout/Header";
 import { About } from "@/components/sections/About";
+import { Contact } from "@/components/sections/Contact";
 import { Experience } from "@/components/sections/Experience";
 import { Hero } from "@/components/sections/Hero";
 import { Projects } from "@/components/sections/Projects";
 import { Skills } from "@/components/sections/Skills";
-import { navigationItems } from "@/data/navigation";
 
 export default function Home() {
   return (
@@ -17,14 +17,7 @@ export default function Home() {
         <Skills />
         <Projects />
         <Experience />
-
-        {navigationItems.slice(5).map((item) => (
-          <span
-            className="block scroll-mt-20"
-            id={item.href.slice(1)}
-            key={item.href}
-          />
-        ))}
+        <Contact />
       </main>
     </>
   );
