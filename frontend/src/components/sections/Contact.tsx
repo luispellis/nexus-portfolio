@@ -1,4 +1,5 @@
 import { SiteContainer } from "@/components/layout/SiteContainer";
+import { ContactForm } from "@/components/sections/ContactForm";
 
 type ContactChannel = {
   label: string;
@@ -97,6 +98,7 @@ export function Contact() {
                 <ContactChannelLink channel={channel} key={channel.label} />
               ))}
             </div>
+            <ContactForm />
           </div>
         </div>
       </SiteContainer>
