@@ -4,9 +4,7 @@ Personal full-stack software engineering portfolio with a professional, subtle g
 
 ## Repository Status
 
-The repository is currently in **Phase 0 / Foundation**.
-
-No production frontend or backend implementation has been generated yet. The next implementation unit is `docs/tasks/TASK-001.md`.
+The initial roadmap is complete. The frontend and backend are independently deployable; provider setup and live deployment remain operator-controlled.
 
 ## Repository Structure
 
@@ -18,9 +16,10 @@ No production frontend or backend implementation has been generated yet. The nex
 │   ├── ARCHITECTURE.md
 │   ├── DESIGN.md
 │   ├── SKILLS.md
+│   ├── DEPLOYMENT.md
 │   ├── decisions/
 │   └── tasks/
-│       └── TASK-001.md
+│       └── TASK-012.md
 ├── reference/
 │   └── stitch/
 │       ├── code.html
@@ -29,30 +28,14 @@ No production frontend or backend implementation has been generated yet. The nex
 └── backend/
 ```
 
+## Deployment
+
+See [`docs/DEPLOYMENT.md`](docs/DEPLOYMENT.md) for Vercel/Railway configuration, environment-variable contracts, SMTP setup, health checks, smoke tests, and rollback guidance.
+
 ## How to Work with Codex
 
-Start a fresh task with a narrow prompt. For TASK-001, use:
+Start a fresh task with a narrow prompt that names the relevant task file in `docs/tasks/` and follows `AGENTS.md`. Each implementation unit should be completed, validated, and reviewed independently.
 
-```text
-Implement docs/tasks/TASK-001.md.
-
-Follow AGENTS.md strictly.
-Read only the files listed under "Required Reading" in the task before implementation.
-Do not implement anything marked out of scope.
-Do not modify AGENTS.md or reference/stitch.
-
-Before coding, give me a concise plan.
-Then implement, validate, review the diff, and return the completion report requested by the task.
-```
-
-Avoid prompts such as "analyze the entire repository and build the whole portfolio". Each implementation unit should have its own task specification.
-
-## Initial Skill
-
-Optional but recommended for the first engineering phase:
-
-```bash
-npx agent-skills install --skill tlc-spec-driven
-```
+## Skills
 
 See `docs/SKILLS.md` before installing additional skills.

@@ -10,6 +10,9 @@ spring:
       mail.smtp.auth: ${MAIL_SMTP_AUTH:true}
       mail.smtp.starttls.enable: ${MAIL_SMTP_STARTTLS:true}
 
+server:
+  port: ${PORT:8080}
+
 app:
   cors:
     allowed-origin: ${FRONTEND_ORIGIN:http://localhost:3000}
