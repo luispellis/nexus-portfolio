@@ -11,19 +11,19 @@ type JourneyEntry = {
 const journeyEntries: readonly JourneyEntry[] = [
   {
     id: "LOG 01",
-    label: "Current foundation",
-    title: "Technology & Technical Support",
+    label: "Base atual",
+    title: "Tecnologia e suporte técnico",
     description:
-      "Current practical experience in Technology / IT support includes working with systems, investigating errors, resolving technical issues, and understanding production environments.",
-    items: ["System troubleshooting", "Error investigation", "Production environment awareness", "Technical problem solving"],
+      "A experiência prática atual em Tecnologia e suporte de TI inclui o trabalho com sistemas, investigação de erros, resolução de problemas técnicos e compreensão de ambientes de produção.",
+    items: ["Diagnóstico de sistemas", "Investigação de erros", "Conhecimento de ambientes de produção", "Resolução de problemas técnicos"],
   },
   {
     id: "LOG 02",
-    label: "Current direction",
-    title: "Backend / Java Development",
+    label: "Direção atual",
+    title: "Desenvolvimento Backend / Java",
     description:
-      "Applying the problem-solving mindset developed in IT support while deepening backend development skills with Java, Spring Boot, REST APIs, SQL, Git, and object-oriented programming.",
-    items: ["Java", "Spring Boot", "REST APIs", "SQL", "Git", "Object-Oriented Programming"],
+      "Aplicando a mentalidade de resolução de problemas desenvolvida no suporte de TI enquanto aprofundo habilidades de backend com Java, Spring Boot, REST APIs, SQL, Git e Programação Orientada a Objetos.",
+    items: ["Java", "Spring Boot", "REST APIs", "SQL", "Git", "Programação Orientada a Objetos"],
   },
 ];
 
@@ -42,7 +42,7 @@ function JourneyEntryCard({ entry, isCurrentDirection }: { entry: JourneyEntry; 
           {entry.title}
         </h3>
         <p className="mt-4 max-w-2xl text-base leading-7 text-muted">{entry.description}</p>
-        <ul className="mt-7 flex flex-wrap gap-2" aria-label={`${entry.title} focus areas`}>
+        <ul className="mt-7 flex flex-wrap gap-2" aria-label={`Áreas de foco: ${entry.title}`}>
           {entry.items.map((item) => (
             <li className="border border-cyan/20 bg-base/70 px-3 py-2 font-mono text-xs leading-5 text-foreground" key={item}>
               {item}
@@ -61,18 +61,18 @@ export function Experience() {
       <SiteContainer className="relative">
         <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
           <header className="max-w-xl lg:col-span-4 lg:pt-8">
-            <p className="font-mono text-xs font-medium uppercase tracking-[0.16em] text-gold">JOURNEY LOG</p>
+            <p className="font-mono text-xs font-medium uppercase tracking-[0.16em] text-gold">JORNADA</p>
             <h2 className="mt-4 font-display text-4xl font-bold tracking-[-0.03em] text-foreground sm:text-5xl" id="experience-title">
-              Experience
+              Experiência
             </h2>
             <p className="mt-6 text-base leading-7 text-muted sm:text-lg">
-              Experience close to real systems and production issues now informs how I approach backend development,
-              debugging, and reliability.
+              A experiência próxima a sistemas reais e problemas de produção orienta como abordo desenvolvimento
+              backend, depuração e confiabilidade.
             </p>
           </header>
 
           <div className="min-w-0 lg:col-span-7 lg:col-start-6">
-            <ol className="relative space-y-8 border-l border-card pl-8 sm:pl-10" aria-label="Professional journey log">
+            <ol className="relative space-y-8 border-l border-card pl-8 sm:pl-10" aria-label="Jornada profissional">
               {journeyEntries.map((entry, index) => (
                 <JourneyEntryCard entry={entry} isCurrentDirection={index === 1} key={entry.id} />
               ))}

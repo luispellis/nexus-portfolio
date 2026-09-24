@@ -10,11 +10,17 @@ type FieldErrors = Partial<Record<keyof ContactMessage, string>>;
 const initialValues: ContactMessage = { name: "", email: "", message: "" };
 
 const statusMessages: Partial<Record<FormStatus, string>> = {
-  success: "Message sent successfully. Thank you for reaching out.",
-  "validation-error": "Please review the highlighted fields and try again.",
-  "delivery-error": "Message delivery is unavailable right now. Please try again or use a direct contact channel.",
-  "network-error": "Unable to reach the contact service. Please check your connection and try again, or use a direct contact channel.",
-  "unexpected-error": "Unable to send your message right now. Please try again or use a direct contact channel.",
+  success: "Mensagem enviada com sucesso. Obrigado pelo contato.",
+  "validation-error": "Revise os campos destacados e tente novamente.",
+  "delivery-error": "O envio de mensagens está indisponível no momento. Tente novamente ou use um canal direto.",
+  "network-error": "Não foi possível acessar o serviço de contato. Verifique sua conexão e tente novamente ou use um canal direto.",
+  "unexpected-error": "Não foi possível enviar sua mensagem agora. Tente novamente ou use um canal direto.",
+};
+
+const validationMessages: FieldErrors = {
+  name: "Informe seu nome.",
+  email: "Informe um e-mail válido.",
+  message: "Escreva uma mensagem com pelo menos 10 caracteres.",
 };
 
 export function ContactForm() {
@@ -50,7 +56,13 @@ export function ContactForm() {
     }
 
     if (result.kind === "validation-error") {
-      setFieldErrors(result.fieldErrors);
+      setFieldErrors(
+        Object.keys(result.fieldErrors).reduce<FieldErrors>((errors, field) => {
+          const contactField = field as keyof ContactMessage;
+          errors[contactField] = validationMessages[contactField];
+          return errors;
+        }, {}),
+      );
     }
     setStatus(result.kind);
   }
@@ -59,10 +71,10 @@ export function ContactForm() {
     <form aria-busy={isSubmitting} className="mt-10 border-t border-card pt-8" onSubmit={handleSubmit}>
       <div className="flex flex-wrap items-baseline justify-between gap-3">
         <div>
-          <p className="font-mono text-xs font-medium uppercase tracking-[0.16em] text-purple">Message portal</p>
-          <h3 className="mt-3 font-display text-2xl font-semibold tracking-[-0.02em] text-foreground">Send a message</h3>
+          <p className="font-mono text-xs font-medium uppercase tracking-[0.16em] text-purple">Portal de mensagens</p>
+          <h3 className="mt-3 font-display text-2xl font-semibold tracking-[-0.02em] text-foreground">Envie uma mensagem</h3>
         </div>
-        <p className="font-mono text-xs text-muted">All fields required</p>
+        <p className="font-mono text-xs text-muted">Todos os campos são obrigatórios</p>
       </div>
 
       <div className="mt-6 grid gap-5 sm:grid-cols-2">
@@ -70,7 +82,7 @@ export function ContactForm() {
           autoComplete="name"
           error={fieldErrors.name}
           id="contact-name"
-          label="Name"
+          label="Nome"
           maxLength={100}
           onChange={(value) => updateField("name", value)}
           disabled={isSubmitting}
@@ -80,7 +92,7 @@ export function ContactForm() {
           autoComplete="email"
           error={fieldErrors.email}
           id="contact-email"
-          label="Email"
+          label="E-mail"
           maxLength={254}
           onChange={(value) => updateField("email", value)}
           disabled={isSubmitting}
@@ -91,7 +103,7 @@ export function ContactForm() {
 
       <div className="mt-5">
         <label className="font-mono text-xs font-medium uppercase tracking-[0.14em] text-muted" htmlFor="contact-message">
-          Message
+          Mensagem
         </label>
         <textarea
           aria-describedby={fieldErrors.message ? "contact-message-error" : undefined}
@@ -103,7 +115,7 @@ export function ContactForm() {
           minLength={10}
           name="message"
           onChange={(event) => updateField("message", event.target.value)}
-          placeholder="How can we work together?"
+          placeholder="Como podemos trabalhar juntos?"
           required
           rows={6}
           value={values.message}
@@ -126,7 +138,7 @@ export function ContactForm() {
         disabled={isSubmitting}
         type="submit"
       >
-        {isSubmitting ? "Sending..." : "Send message"}
+        {isSubmitting ? "Enviando..." : "Enviar mensagem"}
       </button>
     </form>
   );
