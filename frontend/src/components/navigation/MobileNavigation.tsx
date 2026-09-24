@@ -1,11 +1,28 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { navigationItems } from "@/data/navigation";
 
 export function MobileNavigation() {
   const [isOpen, setIsOpen] = useState(false);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    if (!isOpen) {
+      return;
+    }
+
+    function handleKeyDown(event: KeyboardEvent) {
+      if (event.key === "Escape") {
+        setIsOpen(false);
+        menuButtonRef.current?.focus();
+      }
+    }
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isOpen]);
 
   return (
     <div className="md:hidden">
@@ -15,6 +32,7 @@ export function MobileNavigation() {
         aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
         className="flex h-10 w-10 items-center justify-center rounded-control border border-card bg-card text-foreground transition-colors hover:border-cyan focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan"
         onClick={() => setIsOpen((currentValue) => !currentValue)}
+        ref={menuButtonRef}
         type="button"
       >
         <span className="sr-only">Menu</span>

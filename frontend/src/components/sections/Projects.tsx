@@ -93,6 +93,7 @@ function ProjectCard({ project }: { project: Project }) {
         target="_blank"
       >
         View repository on GitHub
+        <span className="sr-only"> (opens in a new tab)</span>
         <span aria-hidden="true">↗</span>
       </a>
     </article>

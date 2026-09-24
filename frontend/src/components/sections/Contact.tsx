@@ -51,7 +51,10 @@ function ContactChannelLink({ channel }: { channel: ContactChannel }) {
     >
       <span className="min-w-0">
         <span className="block font-mono text-xs font-medium uppercase tracking-[0.14em] text-muted">{channel.label}</span>
-        <span className="mt-2 block break-words font-mono text-sm font-medium leading-6 text-foreground">{channel.value}</span>
+        <span className="mt-2 block break-words font-mono text-sm font-medium leading-6 text-foreground">
+          {channel.value}
+          {channel.external ? <span className="sr-only"> (opens in a new tab)</span> : null}
+        </span>
       </span>
       <span aria-hidden="true" className="shrink-0 font-mono text-lg text-cyan transition-transform group-hover:translate-x-1">
         ↗
