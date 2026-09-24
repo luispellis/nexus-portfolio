@@ -23,10 +23,10 @@ const jetBrainsMono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "Luis Felipe | Software Engineer",
-    template: "%s | Luis Felipe",
+    default: "Luis Pellis | Desenvolvedor de Software",
+    template: "%s | Luis Pellis",
   },
-  description: "Personal software engineering portfolio for Luis Felipe.",
+  description: "Portfólio de engenharia de software de Luis Pellis.",
 };
 
 export default function RootLayout({
